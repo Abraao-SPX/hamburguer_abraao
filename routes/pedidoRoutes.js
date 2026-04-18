@@ -5,6 +5,6 @@ const router = Router();
 
 router.post('/', PedidoController.create);
 router.get('/', PedidoController.findAll);
-// Adicione outras rotas se houver outros métodos em PedidoController
+router.get('/:id', PedidoController.findById);
 
 export default router;

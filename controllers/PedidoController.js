@@ -28,6 +28,24 @@ const PedidoController = {
         catch(error){
             res.status(500).json({ error: error.message });
         }
+    },
+
+    findById : async (req,res) =>{
+        try{
+            const pedido = await Pedido.findByPk(req.params.id, {
+                include: [
+                    { model: Entrega, as: 'entrega' },
+                    { model: Avaliacao, as: 'avaliacao' }
+                ]
+            });
+            if (pedido) {
+                res.status(200).json(pedido);
+            } else {
+                res.status(404).json({ error: 'Pedido não encontrado' });
+            }
+        }catch(error){
+            res.status(500).json({ error: error.message });
+        }
     }
 
 };
